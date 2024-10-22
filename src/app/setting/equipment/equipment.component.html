@@ -1,0 +1,72 @@
+<div class="container-fluid overflow-auto">
+    <nav class="navbar navbar-light bg-light mt-2 mb-3">
+        <div class="container-fluid">
+            <span class="navbar-brand">ข้อมูลอุปกรณ์/เครื่องจักร</span>
+        </div>
+    </nav>
+
+    <div class="mt-3">
+        <div class="">
+            <button class="btn btn-primary" (click)="insert()"><em class="fa fa-plus"></em> เพิ่มอุปกรณ์</button>
+        </div>
+
+        <table id="equipment-table" class="table table-hover">
+            <caption></caption>
+
+            <thead>
+                <tr>
+                    <th *ngFor="let header of dataTable.headerRow">{{header}}</th>
+                </tr>
+            </thead>
+
+            <tfoot>
+                <tr>
+                    <th *ngFor="let footer of dataTable.footerRow">{{footer}}</th>
+                </tr>
+            </tfoot>
+
+            <tbody>
+                <tr *ngFor="let row of dataTable.dataRows"></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="equipment-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">เพิ่มอุปกรณ์/เครื่องจักร</h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="d-flex flex-shrink">
+            <div class="form-group p-1">
+                <label>หมวดงาน</label>
+                <select class="form-select" [(ngModel)]="groupRef">
+                    <option [ngValue]="0">- เลือก -</option>
+                    <option *ngFor="let opt of groups" [ngValue]="opt.id">{{opt.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-flex flex-shrink">
+            <div class="form-group p-1" style="width: 8em">
+                <label>รหัส</label>
+                <input type="text" class="form-control" [(ngModel)]="equipment.code">
+            </div>
+
+            <div class="form-group p-1" style="width: 20em;">
+                <label>ชื่ออุปกรณ์/เครื่องจักร</label>
+                <input type="text" class="form-control" [(ngModel)]="equipment.name">
+            </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="save()" >บันทึก</button>
+        <button type="button" class="btn btn-secondary" (click)="close()">ออก</button>
+      </div>
+    </div>
+  </div>
+</div>

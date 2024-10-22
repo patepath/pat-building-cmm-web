@@ -1,0 +1,51 @@
+<div class="container-fluid overflow-auto" style="height: 100vh;">
+    <nav class="navbar navbar-light bg-light mt-2 mb-3">
+        <div class="container-fluid">
+            <span class="navbar-brand">รายงานแยกตามหน่วยงาน</span>
+        </div>
+    </nav>
+
+
+    <div class="d-flex flex-row mb-2">
+        <div classs="form-group">
+            <label>เริ่ม</label>
+            <input type="date" class="form-control" [(ngModel)]="frmDate" (ngModelChange)="generate()">
+        </div>
+
+        <div classs="form-group ms-1">
+            <label>ถึง</label>
+            <input type="date" class="form-control ms-1" [(ngModel)]="toDate" (ngModelChange)="generate()">
+        </div>
+    </div>
+
+    <div class="row">
+    
+        <div id="chart" class="col-6">
+            <canvas></canvas>
+        </div>
+
+        <div class="col-6">
+            <div class="mt-3">
+                <table id="report3-table" class="table">
+                    <caption></caption>
+
+                    <thead>
+                        <tr>
+                            <th *ngFor="let header of dataTable.headerRow">{{header}}</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th *ngFor="let footer of dataTable.footerRow">{{footer}}</th>
+                        </tr>
+                    </tfoot>
+
+                    <tbody>
+                        <tr *ngFor="let row of dataTable.dataRows"></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

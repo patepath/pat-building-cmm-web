@@ -1,0 +1,179 @@
+<div class="container-fluid overflow-auto" style="height: 100vh;">
+    <nav class="navbar navbar-light bg-light mt-2 mb-3">
+        <div class="container-fluid">
+            <span class="navbar-brand">รับเรื่องซ่อม</span>
+        </div>
+    </nav>
+
+    <div class="d-flex flex-row mb-2">
+        <div class="form-group" style="width: 12em;">
+            <label>วันที่รับเรื่อง</label>
+            <input class="form-control" [value]="issue.created | date: 'dd-MM-yyyy HH:mm:ss'"  disabled="true">
+        </div>
+
+        <div class="form-group ms-1" style="width: 12em;">
+            <label>เลขที่รับเรื่อง</label>
+            <input class="form-control" [value]="issue.code"  disabled="true">
+        </div>
+
+        <div class="form-group ms-1">
+            <label class="label label-default">หน่วยงาน</label>
+            <select class="form-select" [(ngModel)]="deptRef" disabled="true">
+                <option [ngValue]="0">- เลือก -</option>
+                <option *ngFor="let opt of depts" [ngValue]="opt.id">{{opt.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group ms-1">
+            <label class="label label-default">อาคาร</label>
+            <input class="form-control" [(ngModel)]="issue.building">
+        </div>
+
+        <div class="form-group ms-1" style="width: 6em;">
+            <label class="label label-default">ชั้น</label>
+            <input class="form-control" [(ngModel)]="issue.floor">
+        </div>
+
+        <div class="form-group ms-1" style="width: 40em">
+            <label class="label label-default">ที่อยู่</label>
+            <input class="form-control" [(ngModel)]="issue.location">
+        </div>
+    </div>
+
+    <div class="d-flex flex-row mb-2">
+        <div class="form-group me-1 w-25">
+            <label class="label label-default">ชื่อผู้แจ้ง</label>
+            <input class="form-control" [(ngModel)]="issue.caller" disabled="true">
+        </div>
+
+        <div class="form-group me-1">
+            <label class="label label-default">หมายเลขโทรศัพท์ติดต่อ</label>
+            <input class="form-control" [(ngModel)]="issue.phoneno" disabled="true">
+        </div>
+    </div>
+
+    <div class="d-flex flex-row mb-2">
+        <div class="form-group me-1">
+            <label>ประเภทงาน</label>
+            <select class="form-select" [(ngModel)]="groupRef" (ngModelChange)="changeGroup()">
+                <option [ngValue]="0">- เลือก -</option>
+                <option *ngFor="let opt of groups" [ngValue]="opt.id">{{opt.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group me-1">
+            <label>อุปกรณ์/เครื่องจักร</label>
+            <select class="form-select" [(ngModel)]="equipmentRef">
+                <option [ngValue]="0">- เลือก -</option>
+                <option *ngFor="let opt of equipments" [ngValue]="opt.id">{{opt.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group me-1">
+            <label>ประเภทระบบงาน</label>
+            <select class="form-select" [(ngModel)]="categoryRef">
+                <option [ngValue]="0">- เลือก -</option>
+                <option *ngFor="let opt of categories" [ngValue]="opt.id">{{opt.name}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="d-flex flex-row mb-2">
+        <div class="form-group w-100">
+            <label class="label label-default">ความต้องการ/อาการเสีย</label>
+            <textarea class="form-control" rows="5" [(ngModel)]="issue.description" disabled="true"></textarea>
+        </div>
+    </div>
+
+    <div class="d-flex flex-row mb-2">
+        <div class="form-group w-100">
+            <label class="label label-default">สาเหตุ</label>
+            <textarea class="form-control" rows="5" [(ngModel)]="issue.cause"></textarea>
+        </div>
+    </div>
+
+    <div class="d-flex flex-row mb-3">
+        <div class="form-group w-100">
+            <label class="label label-default">การแก้ปัญหา</label>
+            <textarea class="form-control" rows="5" [(ngModel)]="issue.solution"></textarea>
+        </div>
+    </div>
+
+    <div class="mb-3">Last modified: {{issue.lastModifiedDate | date: "dd/MM/yyyy hh:mm:ss"}}</div>
+
+    <table id="parts-table" class="table table-bordered">
+        <caption></caption>
+
+        <thead>
+            <tr>
+                <th *ngFor="let header of dataTable.headerRow">{{header}}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let row of dataTable.dataRows"></tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex flex-row mt-3 mb-2">
+        <div class="form-group">
+            <label>ช่างที่รับผิดชอบ</label>
+            <input class="form-control" style="width: 30em;" [(ngModel)]="issue.techname">
+        </div>
+    </div>
+
+    <div class="d-flex flex-row mt-3 mb-2">
+        <div class="form-group">
+            <label>ความพึ่งพอใจ</label>
+            <select class="form-select" [(ngModel)]="issue.satisfication">
+                <option [ngValue]="0">- เลือก -</option>
+                <option [ngValue]="1">พึ่งพอใจสูงสุด</option>
+                <option [ngValue]="2">พึ่งพอใจ</option>
+                <option [ngValue]="3">ปกติ</option>
+                <option [ngValue]="4">ไม่พึ่งพอใจ</option>
+                <option [ngValue]="5">ไม่พึ่งพอใจมาก</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="d-flex flex-row mb-2">
+        <div>
+            <button type="button" class="btn btn-primary" (click)="save()">บันทึก</button>
+            <button type="button" class="btn btn-info ms-1" (click)="finish()" >เสร็จงาน</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="parts-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">อะไหล่ที่เปลี่ยน</h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="d-flex flex-shrink">
+            <div class="form-group p-1">
+                <label>ชื่ออะไหล่</label>
+                <select class="form-select" [(ngModel)]="part.id" (ngModelChange)="changeParts()">
+                    <option [ngValue]="0">- เลือก -</option>
+                    <option *ngFor="let opt of partProfiles" [ngValue]="opt.id">{{opt.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group p-1" style="width: 8em;">
+                <label>จำนวน ({{part.unit}})</label>
+                <input class="form-control" [(ngModel)]="part.qty">
+            </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveParts()" >บันทึก</button>
+        <button type="button" class="btn btn-danger" (click)="delParts()" [disabled]="partInx < 0" >ลบ</button>
+        <button type="button" class="btn btn-secondary" (click)="closeParts()">ออก</button>
+      </div>
+    </div>
+  </div>
+</div>

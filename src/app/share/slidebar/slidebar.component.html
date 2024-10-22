@@ -1,0 +1,202 @@
+<div id="sidebar" class="d-flex flex-shrink-0">
+    <h1 class="visually-hidden">CMMS</h1>
+
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 100%;" >
+
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <img src="../assets/img/logo.png" class="me-2" width="64" height="64" alt="">
+            <span class="fs-4">CMMS</span>
+        </a>
+
+        <select class="mt-2" [(ngModel)]="jobType" (ngModelChange)="changeJobType()" style="width: 100%;">
+            <option [ngValue]="1">งานซ่อม</option>
+            <option [ngValue]="2">งาน PM.</option>
+        </select>
+
+        <ul id="nav-menu" class="nav nav-pills flex-column mb-auto mt-2" *ngIf="user.role == 1" style="width: 100%">
+            <li class="nav-item">
+                <a [routerLink]="['admin/new-issue']" class="nav-link active text-white" aria-current="page">
+                    <em class="fa fa-volume-control-phone me-2"></em> รับเรื่อง
+                </a>
+            </li>
+
+            <li class="mt-2">
+                <a [routerLink]="['report/admin-today']" class="nav-link text-white">
+                    <em class="fa fa-clock-o me-2"></em>
+                    งานใหม่วันนี้
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['report/admin-proceeding']" class="nav-link text-white">
+                    <em class="fa fa-play me-2"></em>
+                    งานระหว่างดำเนินการ
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['report/admin-wait-for-close']" class="nav-link text-white">
+                    <em class="fa fa-reply me-2"></em>
+                    งานรอปิด
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['report/admin-completed']" class="nav-link text-white">
+                    <em class="fa fa-check-square-o me-2"></em>
+                    งานที่เสร็จแล้ว
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['report/admin-cancelled']" class="nav-link text-white">
+                    <em class="fa fa-trash me-2"></em>
+                    งานที่ยกเลิก
+                </a>
+            </li>
+
+            <li>
+                <hr>
+            </li>
+
+            <li>
+                <a [routerLink]="['report/report1']" class="nav-link text-white">
+                    <em class="fa fa-file-text-o me-2" width="16" height="16"></em>
+                    รายงานแยกตามประเภท
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['report/report2']" class="nav-link text-white">
+                    <em class="fa fa-file-text-o me-2" width="16" height="16"></em>
+                    รายงานแยกตามหน่วยงาน
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['report/report3']" class="nav-link text-white">
+                    <em class="fa fa-file-text-o me-2" width="16" height="16"></em>
+                    รายงานแยกตามหมวด
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['report/report4']" class="nav-link text-white">
+                    <em class="fa fa-file-text-o me-2" width="16" height="16"></em>
+                    รายงานแยกตามสถานะ
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['report/report5']" class="nav-link text-white">
+                    <em class="fa fa-file-text-o me-2" width="16" height="16"></em>
+                    รายงานแยกความพึงพอใจ
+                </a>
+            </li>
+
+            <li>
+                <hr>
+            </li>
+
+            <li>
+                <a [routerLink]="['setting/user']" class="nav-link text-white">
+                    <em class="fa fa-user-circle me-2"></em>
+                    ข้อมูลผู้ใช้งาน
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['setting/department']" class="nav-link text-white">
+                    <em class="fa fa-university me-2"></em>
+                    ข้อมูลหน่วยงาน
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['setting/group']" class="nav-link text-white">
+                    <em class="fa fa-building me-2"></em>
+                    ข้อมูลประเภทงาน
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['setting/equipment']" class="nav-link text-white">
+                    <em class="fa fa-building me-2"></em>
+                    ข้อมูลอุปกรณ์/เครื่องจักร
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['setting/category']" class="nav-link text-white">
+                    <em class="fa fa-building me-2"></em>
+                    ข้อมูลประเภทระบบงาน
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['/setting/part']" class="nav-link text-white">
+                    <em class="fa fa-wrench me-2"></em>
+                    ข้อมูลอะไหล่
+                </a>
+            </li>
+        </ul>
+
+        <ul id="nav-menu" class="nav nav-pills flex-column mb-auto mt-2" *ngIf="user.role == 2">
+            <li class="nav-item">
+                <a [routerLink]="['admin/new-issue']" class="nav-link active text-white" aria-current="page">
+                    <em class="fa fa-volume-control-phone me-2"></em> รับเรื่องซ่อม
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['tech/today-issue']" class="nav-link text-white">
+                    <em class="fa fa-clock-o me-2"></em>
+                    งานใหม่วันนี้
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['tech/proceeding-issue']" class="nav-link text-white">
+                    <em class="fa fa-play me-2"></em>
+                    งานระหว่างดำเนินการ
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['tech/wait-for-close']" class="nav-link text-white">
+                    <em class="fa fa-share me-2"></em>
+                    งานรอปิด
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="['tech/completed-issue']" class="nav-link text-white">
+                    <em class="fa fa-check-square-o me-2"></em>
+                    งานที่เสร็จแล้ว
+                </a>
+            </li>
+        </ul>
+
+        <hr>
+
+        <div class="dropdown mb-2">
+
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>{{fullName}}</strong>
+            </a>
+
+            <ul class=" dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" [routerLink]="['menu/student']">Settings</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" [routerLink]="['/login']">Sign out</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="b-example-divider b-example-vr"></div>
+</div>

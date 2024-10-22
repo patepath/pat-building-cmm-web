@@ -1,0 +1,23 @@
+@media screen {
+    .print-content {
+        display: none; 
+    }
+}
+
+@media print {
+    
+    .print-content{
+        size: A4 portrait;
+        border: none !important;
+    }
+
+    .print-content>span {
+        font-size: 10pt;
+    }
+
+    #img-frm {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+}
