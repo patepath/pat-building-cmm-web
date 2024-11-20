@@ -95,7 +95,7 @@ export class AdminCancelledComponent implements OnInit, AfterViewInit {
           this.data.push([
             `${year}-${month}-${date}`,
             s.code,
-            s.building == undefined ? '' : s.building,
+            s.building == undefined ? '' : String(s.building),
             s.floor == undefined ? '' : s.floor,
             s.location == undefined ? '' : s.location,
             s.equipment == undefined ? '' : s.equipment.name,

@@ -298,7 +298,6 @@ export class EditIssueComponent implements OnInit, AfterViewInit {
     }
 
     saveParts() {
-
       if(this.partInx < 0) {
         this.parts.push(this.part);
       } else {

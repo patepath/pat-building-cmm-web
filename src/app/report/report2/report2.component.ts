@@ -79,7 +79,6 @@ export class Report2Component implements OnInit, AfterViewInit {
     this.data = [];
 
     if(this.reports) {
-
       this.reports.forEach(s => {
         this.data.push([
           s.deptname,

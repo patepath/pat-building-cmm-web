@@ -259,8 +259,6 @@ export class EditIssueComponent implements OnInit {
         });
       });
 
-      console.log(this.issue);
-
       this._issueServ.save(this.issue).subscribe(s => {
         if(s) {
           history.back();

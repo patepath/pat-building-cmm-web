@@ -6,7 +6,6 @@ import { Group, GroupService } from 'src/app/services/group.service';
 import { Equipment, EquipmentService } from 'src/app/services/equipment.service';
 import { Category, CategoryService } from 'src/app/services/category.service';
 import { Application } from 'src/app/services/application.service';
-import { AppComponent } from 'src/app/app.component';
 
 declare interface DataTable {
     headerRow: string[];

@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prn-issue.component.css']
 })
 export class PrnIssueComponent implements OnInit {
-
   public created!: string | null;
   public time!: string | null;
   public code!: string | null;

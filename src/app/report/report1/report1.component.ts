@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart } from 'chart.js/auto';
 import { Report1, Report1Service } from 'src/app/services/report1.service';
@@ -16,7 +16,7 @@ declare let $:any;
   templateUrl: './report1.component.html',
   styleUrls: ['./report1.component.css']
 })
-export class Report1Component implements OnInit, AfterViewInit {
+export class Report1Component implements AfterViewInit {
   public dataTable: DataTable = <DataTable>{};
   public data: string[][] = [];
 
@@ -38,11 +38,9 @@ export class Report1Component implements OnInit, AfterViewInit {
     };
   }
 
-  ngOnInit(): void {
-  }
-
   ngAfterViewInit(): void {
     this.initTable();
+    this.generate();
   }
 
   initTable() {
